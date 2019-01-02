@@ -9,6 +9,7 @@ export const handleErrors = res => {
 }
 
 export const signUp = credentials => {
+  console.log('signUp happened')
   return fetch(apiUrl + '/sign-up', {
     method: 'POST',
     headers: {
