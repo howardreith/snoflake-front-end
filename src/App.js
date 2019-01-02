@@ -10,6 +10,8 @@ import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
 
+import GetAllGroups from './group/components/getAllGroups'
+
 class App extends Component {
   constructor () {
     super()
@@ -58,6 +60,7 @@ class App extends Component {
         </main>
         <h1>Something</h1>
         <Body user={user} />
+        <GetAllGroups user = {user}/>
       </React.Fragment>
 
     )

@@ -28,6 +28,10 @@ class SignIn extends Component {
     signIn(this.state)
       .then(res => res.ok ? res : new Error())
       .then(res => res.json())
+      .then(function (res) {
+        console.log('res is ' + JSON.stringify(res))
+        return res
+      })
       .then(res => setUser(res.user))
       .then(() => flash(messages.signInSuccess, 'flash-success'))
       .then(() => history.push('/'))
