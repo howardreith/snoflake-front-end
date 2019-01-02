@@ -38,6 +38,7 @@ class App extends Component {
 
   render () {
     const { flashMessage, flashType, user } = this.state
+    console.log ('user is', user)
 
     return (
       <React.Fragment>
@@ -57,10 +58,9 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword flash={this.flash} user={user} />
           )} />
+          <GetAllGroups flash={this.flash} user = {user} />
         </main>
-        <h1>Something</h1>
-        <Body user={user} />
-        <GetAllGroups user = {user}/>
+        <Body />
       </React.Fragment>
 
     )
