@@ -11,6 +11,7 @@ import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
 
 import GetAllGroups from './group/components/getAllGroups'
+import CreateGRoup from './group/components/createGroup'
 
 class App extends Component {
   constructor () {
@@ -59,8 +60,8 @@ class App extends Component {
             <ChangePassword flash={this.flash} user={user} />
           )} />
           <GetAllGroups flash={this.flash} user = {user} />
+          <CreateGRoup flash={this.flash} user= {user} />
         </main>
-        <Body />
       </React.Fragment>
 
     )

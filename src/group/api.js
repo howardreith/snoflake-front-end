@@ -19,3 +19,22 @@ export const getAllGroups = (user) => {
     },
   })
 }
+
+export const createGroupInAPI = (user, data) => {
+  console.log('user in api is ', user)
+  console.log('data in api is ', data)
+  return fetch(apiUrl + '/groups', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization':`Token token=${user.token}`
+    },
+    body: JSON.stringify({
+      group: {
+        name: data.name,
+        description: data.description,
+        creator_id: user.id
+      }
+    })
+  })
+}

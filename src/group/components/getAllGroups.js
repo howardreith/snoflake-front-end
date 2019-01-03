@@ -12,14 +12,11 @@ class GetAllGroups extends Component {
 
   getAllGroups = event => {
     event.preventDefault()
-    console.log('getAllGroups has been called in getAllGroups.js')
     const { flash, history, user } = this.props
-    console.log('user is ', user)
 
     getAllGroups(user)
       .then(res => res.json())
       .then(function (res) {
-        console.log('res is ' + JSON.stringify(res))
         console.log('res.groups is ', res.groups)
         return res
       })
@@ -38,7 +35,6 @@ class GetAllGroups extends Component {
 
   render () {
     const user = this.props.user
-    console.log(user)
 
     let theContent = null
     if (user) {
