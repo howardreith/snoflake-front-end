@@ -58,7 +58,9 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword flash={this.flash} user={user} />
           )} />
-          <GetAllGroups flash={this.flash} user = {user} />
+          <AuthenticatedRoute user={user} render={() => (
+            <GetAllGroups flash={this.flash} user = {user} />
+          )} />
           <CreateGRoup flash={this.flash} user= {user} />
         </main>
       </React.Fragment>

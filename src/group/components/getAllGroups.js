@@ -10,7 +10,8 @@ class GetAllGroups extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      groups: []
+      groups: [],
+      isLoaded: false
     }
   }
 
@@ -19,12 +20,12 @@ class GetAllGroups extends Component {
     console.log('state is ', this.state)
   }
 
-  getAllGroups = event => {
-    event.preventDefault()
-    const { flash, history, user } = this.props
+  // getAllGroups = event => {
+  //   event.preventDefault()
+  //   const { flash, history, user } = this.props
 
-    // componentDidMount () {
-    //   const { flash, history, user } = this.props
+  componentDidMount () {
+    const { flash, history, user } = this.props
     //   if (user) {
 
     getAllGroups(user)
@@ -36,7 +37,8 @@ class GetAllGroups extends Component {
       .then(
         (res) => {
           this.setState({
-            groups: res.groups
+            groups: res.groups,
+            isLoaded: true
           })
         })
       .then(() => flash(messages.getGroupsSuccess, 'flash-success'))
@@ -59,17 +61,23 @@ class GetAllGroups extends Component {
 
   render () {
     const user = this.props.user
-    const groups = this.state.groups
+    const { isLoaded, groups } = this.state
 
-    let theContent = null
-    if (user) {
-      theContent = this.authenticatedContent
-    }
+    // let theContent = null
+    // if (user) {
+    //   theContent = this.authenticatedContent
+    // }
     return (
-      theContent
+      // theContent
+      <ul>
+        {groups.map(group => (
+          <li key={group.id}>
+            {group.name}
+          </li>
+        ))}
+      </ul>
     )
   }
-
 }
 
 export default GetAllGroups
