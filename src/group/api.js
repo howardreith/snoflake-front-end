@@ -9,8 +9,6 @@ export const handleErrors = res => {
 }
 
 export const getAllGroups = (user) => {
-  console.log('user in api getAllGRoups is ', user)
-  console.log('getAllGroups in api was called')
   return fetch(apiUrl + '/groups', {
     method: 'GET',
     headers: {

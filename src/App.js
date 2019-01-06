@@ -39,7 +39,6 @@ class App extends Component {
 
   render () {
     const { flashMessage, flashType, user } = this.state
-    console.log ('user is', user)
 
     return (
       <React.Fragment>
