@@ -1,13 +1,14 @@
 import React from 'react'
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 
-const AuthenticatedRoute = ({
+const ViewGroupRoute = ({
   component: Component,
   user,
+  group,
   render,
   ...rest
 }) => {
-  if (user && render) {
+  if (user && group && render) {
     return <Route {...rest} render={render} />
   } else {
     return <Route {...rest} render={props =>
@@ -16,4 +17,4 @@ const AuthenticatedRoute = ({
   }
 }
 
-export default AuthenticatedRoute
+export default ViewGroupRoute

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './App.scss'
-import { Route, Link } from 'react-router-dom'
+import { Route, Link, Switch } from 'react-router-dom'
 
 import AuthenticatedRoute from './auth/components/AuthenticatedRoute'
 import Header from './header/Header'
@@ -11,7 +11,8 @@ import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
 
 import GetAllGroups from './group/components/getAllGroups'
-import CreateGRoup from './group/components/createGroup'
+import CreateGroup from './group/components/createGroup'
+import ViewGroup from './group/components/viewGroup'
 
 class App extends Component {
   constructor () {
@@ -58,10 +59,11 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword flash={this.flash} user={user} />
           )} />
-          <AuthenticatedRoute user={user} render={() => (
-            <GetAllGroups flash={this.flash} user = {user} />
+          <AuthenticatedRoute user={user} path='/' render={() => (
+            <GetAllGroups flash={this.flash} user={user} />
           )} />
-          <CreateGRoup flash={this.flash} user= {user} />
+          <CreateGroup flash={this.flash} user={user} />
+          <ViewGroup flash={this.flash} user={user} />
         </main>
       </React.Fragment>
 
