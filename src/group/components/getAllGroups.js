@@ -45,6 +45,21 @@ class GetAllGroups extends Component {
     )
   }
 
+  renderGroupsList () {
+    const user = this.props.user
+    console.log('this.state.groups is ', this.state.groups)
+    this.state.groups.map(group => {
+      return (
+        <div className="item" key={group.id}>
+          <div className="content">
+            <Link to={`/groups/${group.id}`} className='header'>{group.name}</Link>
+            <div className="description">{group.description}</div>
+          </div>
+        </div>
+      )
+    })
+  }
+
 
 
   render () {
@@ -56,8 +71,8 @@ class GetAllGroups extends Component {
         {this.renderCreateButton()}
         <ul>
           {groups.map(group => (
-            <li key={group.id}>
-              {group.name}
+            <li key={group.id} className='list-group-item'><Link to={`/groups/${group.id}`}>
+              {group.name}</Link><br/>{group.description}
             </li>
           ))}
         </ul>

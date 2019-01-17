@@ -11,11 +11,9 @@ class ViewGroup extends Component {
     super(props)
   }
 
-  viewGroup = event => {
-    event.preventDefault()
+  componentDidMount() {
     const { flash, history, user } = this.props
-
-    getGroup(1, user)
+    getGroup(this.props.match.params.id, user)
       .then(res => res.json())
       .then(function (res) {
         console.log('res is ' + JSON.stringify(res))
@@ -27,13 +25,12 @@ class ViewGroup extends Component {
 
   render () {
     const user = this.props.user
+    console.log('props is ', this.props)
 
     return (
-      <React.Fragment>
-        <form className = 'get-group-button' onSubmit={this.viewGroup}>
-          <button type='submit'>Get Group 1</button>
-        </form>
-      </React.Fragment>
+      <div>
+        Just making sure something renders
+      </div>
     )
   }
 }

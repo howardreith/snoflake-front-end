@@ -62,12 +62,12 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/' exact render={() => (
             <GetAllGroups flash={this.flash} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/create-group' exact render={() => (
+          <AuthenticatedRoute user={user} path='/create-group' exact component={CreateGroup} render={() => (
             <CreateGroup flash={this.flash} user={user} />
           )} />
-          <Route path='/groups/:id' render={() => (
-            <ViewGroup flash={this.flash} user={user} />
-          )} />
+          <AuthenticatedRoute user={user} path='/groups/:id' exact component={ViewGroup} render={(routerProps) => (
+            <ViewGroup flash={this.flash} user={user} {...routerProps} />
+          )}/>
 
         </main>
       </React.Fragment>
