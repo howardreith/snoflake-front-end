@@ -6,8 +6,8 @@ import messages from '../messages'
 import apiUrl from '../../apiConfig'
 
 class CreateGroup extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
   }
 
   createGroup = event => {

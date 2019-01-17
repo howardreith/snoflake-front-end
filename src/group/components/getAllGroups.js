@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 import { handleErrors, getAllGroups } from '../api'
 import messages from '../messages'
@@ -35,6 +35,16 @@ class GetAllGroups extends Component {
       .catch(() => flash(messages.getGroupsFailure, 'flash-error'))
   }
 
+  renderCreateButton () {
+    return (
+      <div>
+        <Link to="/create-group">
+            Create New Group
+        </Link>
+      </div>
+    )
+  }
+
 
 
   render () {
@@ -42,13 +52,16 @@ class GetAllGroups extends Component {
     const { isLoaded, groups } = this.state
 
     return (
-      <ul>
-        {groups.map(group => (
-          <li key={group.id}>
-            {group.name}
-          </li>
-        ))}
-      </ul>
+      <div>
+        {this.renderCreateButton()}
+        <ul>
+          {groups.map(group => (
+            <li key={group.id}>
+              {group.name}
+            </li>
+          ))}
+        </ul>
+      </div>
     )
   }
 }

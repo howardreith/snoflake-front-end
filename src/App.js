@@ -59,11 +59,16 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword flash={this.flash} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/' render={() => (
+          <AuthenticatedRoute user={user} path='/' exact render={() => (
             <GetAllGroups flash={this.flash} user={user} />
           )} />
-          <CreateGroup flash={this.flash} user={user} />
-          <ViewGroup flash={this.flash} user={user} />
+          <AuthenticatedRoute user={user} path='/create-group' exact render={() => (
+            <CreateGroup flash={this.flash} user={user} />
+          )} />
+          <Route path='/groups/:id' render={() => (
+            <ViewGroup flash={this.flash} user={user} />
+          )} />
+
         </main>
       </React.Fragment>
 

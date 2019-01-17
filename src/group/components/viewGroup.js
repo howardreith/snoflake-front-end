@@ -7,8 +7,8 @@ import apiUrl from '../../apiConfig'
 
 
 class ViewGroup extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
   }
 
   viewGroup = event => {
