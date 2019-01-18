@@ -44,3 +44,18 @@ export const getGroup = (group_id, user) => {
     },
   })
 }
+
+export const joinGroup = (group_id, user) => {
+  return fetch(apiUrl + '/user_groups_memberships', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization':`Token token=${user.token}`
+    },
+    body: JSON.stringify({
+      user_groups_membership: {
+        group_id: group_id
+      }
+    })
+  })
+}

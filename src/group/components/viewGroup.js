@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom'
 import { handleErrors, getGroup } from '../api'
 import messages from '../messages'
 import apiUrl from '../../apiConfig'
+import JoinGroup from './joinGroup'
 
 
 class ViewGroup extends Component {
@@ -46,6 +47,7 @@ class ViewGroup extends Component {
 
       <div>
         <h1>{group.name}</h1>
+        <JoinGroup flash={this.props.flash} user={this.props.user} group={this.state.group}/>
         <h3>{group.description}</h3>
         <h4>Members:</h4>
         <ul>
