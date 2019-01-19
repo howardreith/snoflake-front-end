@@ -12,7 +12,8 @@ class ViewGroup extends Component {
     super(props)
     this.state = {
       group: {},
-      isLoaded: false
+      isLoaded: false,
+      isMember: null
     }
   }
 
@@ -31,16 +32,25 @@ class ViewGroup extends Component {
             isLoaded: true
           })
         })
+      .then(() => {
+        // console.log('this.state.group.users is ', this.state.group.users)
+        if (this.state.group.users.find(person => person.id === this.props.user.id)) {
+          this.setState({ isMember: true })
+        } else {
+          this.setState({ isMember: false })
+        }
+      })
       .then(() => flash(messages.getGroupSuccess, 'flash-success'))
       .catch(() => flash(messages.getGroupFailure, 'flash-error'))
   }
 
   render () {
     const user = this.props.user
-    console.log('this.state.group is ', this.state.group)
+    // console.log('this.state.group is ', this.state.group)
     const group = this.state.group
     const groupMembers = this.state.group.users
-    console.log('members are ', groupMembers)
+    // console.log('members are ', groupMembers)
+    console.log('isMember is ', this.state.isMember)
     // const groupMembers = this.state.group.users.map((user) => <li key={user.id}>{user.email}</li>)
 
     return (
