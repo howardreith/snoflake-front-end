@@ -45,6 +45,16 @@ export const getGroup = (group_id, user) => {
   })
 }
 
+export const getUserGroups = (user) => {
+  return fetch(apiUrl + '/user_groups_memberships', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization':`Token token=${user.token}`
+    }
+  })
+}
+
 export const joinGroup = (group_id, user) => {
   return fetch(apiUrl + '/user_groups_memberships', {
     method: 'POST',
@@ -57,5 +67,15 @@ export const joinGroup = (group_id, user) => {
         group_id: group_id
       }
     })
+  })
+}
+
+export const leaveGroup = (membership_id) => {
+  return fetch(apiUrl + '/user_groups_memberships/' + membership_id, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization':`Token token=${user.token}`
+    },
   })
 }

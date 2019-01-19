@@ -6,5 +6,7 @@ export default {
   getGroupSuccess: 'Successfully got group',
   getGroupFailure: 'Could not get group',
   joinGroupSuccess: 'Successfully joined group',
-  joinGroupFailure: 'Could not join group'
+  joinGroupFailure: 'Could not join group',
+  leaveGroupSuccess: 'Successfully left group',
+  leaveGroupFailure: 'Could not leave group'
 }

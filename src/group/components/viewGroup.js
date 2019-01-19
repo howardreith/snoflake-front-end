@@ -5,6 +5,7 @@ import { handleErrors, getGroup } from '../api'
 import messages from '../messages'
 import apiUrl from '../../apiConfig'
 import JoinGroup from './joinGroup'
+import LeaveGroup from './leaveGroup'
 
 
 class ViewGroup extends Component {
@@ -35,6 +36,7 @@ class ViewGroup extends Component {
       .then(() => {
         // console.log('this.state.group.users is ', this.state.group.users)
         if (this.state.group.users.find(person => person.id === this.props.user.id)) {
+          console.log(this.state.group.users.find(person => person.id === this.props.user.id))
           this.setState({ isMember: true })
         } else {
           this.setState({ isMember: false })
@@ -42,6 +44,18 @@ class ViewGroup extends Component {
       })
       .then(() => flash(messages.getGroupSuccess, 'flash-success'))
       .catch(() => flash(messages.getGroupFailure, 'flash-error'))
+  }
+
+  renderJoinLeaveButton() {
+    if(this.state.isMember) {
+      return (
+        <LeaveGroup flash={this.props.flash} user={this.props.user} group={this.state.group}/>
+      )
+    } else {
+      return (
+        <JoinGroup flash={this.props.flash} user={this.props.user} group={this.state.group}/>
+      )
+    }
   }
 
   render () {
@@ -53,11 +67,13 @@ class ViewGroup extends Component {
     console.log('isMember is ', this.state.isMember)
     // const groupMembers = this.state.group.users.map((user) => <li key={user.id}>{user.email}</li>)
 
-    return (
+    if (this.state.isMember) {
 
+    }
+    return (
       <div>
         <h1>{group.name}</h1>
-        <JoinGroup flash={this.props.flash} user={this.props.user} group={this.state.group}/>
+        {this.renderJoinLeaveButton()}
         <h3>{group.description}</h3>
         <h4>Members:</h4>
         <ul>

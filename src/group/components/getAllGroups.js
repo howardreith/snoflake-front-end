@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 
-import { handleErrors, getAllGroups } from '../api'
+import { handleErrors, getAllGroups, getUserGroups } from '../api'
 import messages from '../messages'
 import apiUrl from '../../apiConfig'
 import Group from './Group'
@@ -11,6 +11,7 @@ class GetAllGroups extends Component {
     super(props)
     this.state = {
       groups: [],
+      userGroups: [],
       isLoaded: false
     }
   }
@@ -29,6 +30,21 @@ class GetAllGroups extends Component {
           this.setState({
             groups: res.groups,
             isLoaded: true
+          })
+        })
+      .then(() => flash(messages.getGroupsSuccess, 'flash-success'))
+      .catch(() => flash(messages.getGroupsFailure, 'flash-error'))
+
+    getUserGroups(user)
+      .then(res => res.json())
+      .then(function (res) {
+        console.log('res getUserGroups is ', res)
+        return res
+      })
+      .then(
+        (res) => {
+          this.setState({
+            userGroups: res.user_groups_memberships,
           })
         })
       .then(() => flash(messages.getGroupsSuccess, 'flash-success'))
